@@ -1,0 +1,22 @@
+<<<<<<< HEAD
+https://expressjs.com/enen/guide/routing.html
+https://ejs.co/#docs
+https://vegibit.com/what-is-express-router-for/
+https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/
+https://expressjs.com/en/guide/routing.html
+https://dev.to/gathoni/express-req-params-req-query-and-req-body-4lpc
+https://makeschool.org/mediabook/oa/tutorials/reddit-clone-in-node-js/vote-on-a-post/
+https://dmitripavlutin.com/value-vs-reference-javascript/
+https://expressjs.com/en/starter/generator.html
+=======
+https://expressjs.com/enen/guide/routing.html
+https://ejs.co/#docs
+https://vegibit.com/what-is-express-router-for/
+https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/
+https://expressjs.com/en/guide/routing.html
+https://dev.to/gathoni/express-req-params-req-query-and-req-body-4lpc
+https://makeschool.org/mediabook/oa/tutorials/reddit-clone-in-node-js/vote-on-a-post/
+https://dmitripavlutin.com/value-vs-reference-javascript/
+https://expressjs.com/en/starter/generator.html
+>>>>>>> 69883fec1c4b1ec0796f0f2c16020019a8e480f4
+https://www.onlinepalette.com/reddit/

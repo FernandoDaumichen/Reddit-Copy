@@ -1,0 +1,316 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subs</title>
+</head>
+<style>
+ .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+  .header a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .header button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  hr {
+    margin: 0;
+    border: 1px solid #ff4500;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .PostCreation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff4400;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .PostCreation a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+h2{
+    font-size: 30px;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+h3{
+    font-size: 24px;
+    color: #ff4520;
+    margin-bottom: 5px;
+    font-family:'Open Sans', sans-serif;
+}
+
+button[ type = "submit" ] {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 10px;
+}
+h3 a{ 
+    text-decoration: none;
+    color: #ff4500;
+}
+</style>
+
+<body>
+    <div class="header">
+        <a href="/">
+          <h1>Jeditt</h1>
+        </a>
+        <div class="header-right">
+          <a href="/subs/list">Sub List</a>
+          <form method="post" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+        <hr>
+      </div>  
+    
+      <div class="PostCreation">
+       <a href="/posts/create" id="createPost">Create a post</a>
+       </div>
+    <h2>
+        <%= sub %>
+    </h2>
+
+    <% if (posts.length> 0) { %>
+        <% posts.forEach(function(post) { %>
+            <div>
+                <h3><a href="/posts/show/<%= post.id %>"><h3><%= post.title %></h3></a></h3>
+                <p> <%= post.description %> </p>
+                <a href="<%= post.link %>"><%= post.link %> </a>
+                
+                <% if (user) { %>
+                    <% if (votedPost[post.id]===1) { %>
+                        <form method="post" action="/posts/<%= post.id %>/vote">
+                            <button type="submit" name="vote" value="0">Unvote</button>
+                        </form>
+                        <% } else { %>
+                            <form method="post" action="/posts/<%= post.id %>/vote">
+                                <button type="submit" name="vote" value="1">Upvote</button>
+                            </form>
+                            <% } %>
+                                <% } %>
+            </div>
+            <% }) %>
+                <% } else { %>
+                    <p>No posts yet.</p>
+                    <% } %>
+
+                        <% if (user) { %>
+                            <form method="post" action="/posts">
+                                <input type="hidden" name="sub" value="<%= sub %>">
+                                <label for="title">Title:</label>
+                                <input type="text" name="title" id="title" required>
+                                <label for="body">Body:</label>
+                                <textarea name="body" id="body" rows="5" required></textarea>
+                                <button type="submit">Submit</button>
+                            </form>
+                            <% } %>
+                                <form action="/subs/list">
+                                    <button type="submit">Back</button>
+</body>
+
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subs</title>
+</head>
+<style>
+ .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+  .header a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .header button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  hr {
+    margin: 0;
+    border: 1px solid #ff4500;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .PostCreation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff4400;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .PostCreation a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+h2{
+    font-size: 30px;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+h3{
+    font-size: 24px;
+    color: #ff4520;
+    margin-bottom: 5px;
+    font-family:'Open Sans', sans-serif;
+}
+
+button[ type = "submit" ] {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 10px;
+}
+h3 a{ 
+    text-decoration: none;
+    color: #ff4500;
+}
+</style>
+
+<body>
+    <div class="header">
+        <a href="/">
+          <h1>Jeditt</h1>
+        </a>
+        <div class="header-right">
+          <a href="/subs/list">Sub List</a>
+          <form method="post" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+        <hr>
+      </div>  
+    
+      <div class="PostCreation">
+       <a href="/posts/create" id="createPost">Create a post</a>
+       </div>
+    <h2>
+        <%= sub %>
+    </h2>
+
+    <% if (posts.length> 0) { %>
+        <% posts.forEach(function(post) { %>
+            <div>
+                <h3><a href="/posts/show/<%= post.id %>"><h3><%= post.title %></h3></a></h3>
+                <p> <%= post.description %> </p>
+                <a href="<%= post.link %>"><%= post.link %> </a>
+                
+                <% if (user) { %>
+                    <% if (votedPost[post.id]===1) { %>
+                        <form method="post" action="/posts/<%= post.id %>/vote">
+                            <button type="submit" name="vote" value="0">Unvote</button>
+                        </form>
+                        <% } else { %>
+                            <form method="post" action="/posts/<%= post.id %>/vote">
+                                <button type="submit" name="vote" value="1">Upvote</button>
+                            </form>
+                            <% } %>
+                                <% } %>
+            </div>
+            <% }) %>
+                <% } else { %>
+                    <p>No posts yet.</p>
+                    <% } %>
+
+                        <% if (user) { %>
+                            <form method="post" action="/posts">
+                                <input type="hidden" name="sub" value="<%= sub %>">
+                                <label for="title">Title:</label>
+                                <input type="text" name="title" id="title" required>
+                                <label for="body">Body:</label>
+                                <textarea name="body" id="body" rows="5" required></textarea>
+                                <button type="submit">Submit</button>
+                            </form>
+                            <% } %>
+                                <form action="/subs/list">
+                                    <button type="submit">Back</button>
+</body>
+
+>>>>>>> 69883fec1c4b1ec0796f0f2c16020019a8e480f4
+</html>

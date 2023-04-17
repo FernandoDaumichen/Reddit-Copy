@@ -1,0 +1,322 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subs</title>
+</head>
+<style>
+   .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+  .header a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .header button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  hr {
+    margin: 0;
+    border: 1px solid #ff4500;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .PostCreation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff4400;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .PostCreation a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+    color: #ff4400;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+  h3{
+    font-size: 20px;
+    color: #ff4400;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  p {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  a {
+    font-size: 20px;
+    color: #0f23fe;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+button[type="submit"]{
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family:  "Open Sans", sans-serif;
+}
+a{
+    color: #0f23fe;
+    text-decoration: none;
+    margin-right: 20px;
+    font-family: "open sans", sans-serif;
+}
+
+
+</style>
+
+<body>
+    <div class="header">
+        <a href="/">
+          <h1>Jeditt</h1>
+        </a>
+        <div class="header-right">
+          <a href="/subs/list">Sub List</a>
+          <form method="post" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+        <hr>
+      </div>  
+      <div class="PostCreation">
+        <a href="/posts/create" id="createPost">Create a post</a>
+        </div>
+
+    <h2>Subs</h2>
+
+    <ul>
+        <% sub.forEach(element=> { %>
+
+            <li class="navItem"><a href="/subs/show/<%= element %>">
+                    <%= element %>
+                </a></li>
+            <% }) %>
+    </ul>
+    <form action="/">
+        <button type="submit">Back</button>
+</body>
+
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subs</title>
+</head>
+<style>
+   .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+  .header a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .header button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  hr {
+    margin: 0;
+    border: 1px solid #ff4500;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .PostCreation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff4400;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .PostCreation a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+    color: #ff4400;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+  h3{
+    font-size: 20px;
+    color: #ff4400;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  p {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  a {
+    font-size: 20px;
+    color: #0f23fe;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+button[type="submit"]{
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family:  "Open Sans", sans-serif;
+}
+a{
+    color: #0f23fe;
+    text-decoration: none;
+    margin-right: 20px;
+    font-family: "open sans", sans-serif;
+}
+
+
+</style>
+
+<body>
+    <div class="header">
+        <a href="/">
+          <h1>Jeditt</h1>
+        </a>
+        <div class="header-right">
+          <a href="/subs/list">Sub List</a>
+          <form method="post" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+        <hr>
+      </div>  
+      <div class="PostCreation">
+        <a href="/posts/create" id="createPost">Create a post</a>
+        </div>
+
+    <h2>Subs</h2>
+
+    <ul>
+        <% sub.forEach(element=> { %>
+
+            <li class="navItem"><a href="/subs/show/<%= element %>">
+                    <%= element %>
+                </a></li>
+            <% }) %>
+    </ul>
+    <form action="/">
+        <button type="submit">Back</button>
+</body>
+
+>>>>>>> 69883fec1c4b1ec0796f0f2c16020019a8e480f4
+</html>

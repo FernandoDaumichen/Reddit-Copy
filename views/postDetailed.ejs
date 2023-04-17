@@ -1,0 +1,508 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details </title>
+</head>
+<style>
+    .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+  .header a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .header button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  hr {
+    margin: 0;
+    border: 1px solid #ff4500;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .PostCreation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff4400;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .PostCreation a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+    h2{
+        font-size: 30px;
+        color: #ff4400;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    h3{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    h4{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    p{
+        font-size: 18px;
+        color: #272727;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    label{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    input{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    button{
+    background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 10px;
+    
+     }
+     button a{
+         text-decoration: none;
+         color: white;
+     }
+    h4 a{
+    text-decoration: none;
+    }
+    button[type=logout]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+
+    button[value="1"]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+    button[value="-1"]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+    button[value="0"]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+    button[value="1"]:focus,
+button[value="-1"]:focus,
+button[value="0"]:focus {
+  background-color: #dd977d;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 0;
+  font-size: 10px;
+}
+</style>
+<body>
+  <div class="header">
+    <a href="/">
+      <h1>Jeditt</h1>
+    </a>
+    <div class="header-right">
+      <a href="/subs/list">Sub List</a>
+      <form method="post" action="/logout">
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+    <hr>
+  </div>  
+
+  <div class="PostCreation">
+   <a href="/posts/create" id="createPost">Create a post</a>
+   </div>
+
+    <h2>Post Details</h2>
+    <h3> <%=post.title%></h3>
+    <h4><%= post.subgroup %></h4>
+
+    <a href="<%= post.link %>"><%= post.link %></a>
+    <p> <%=post.description%></p>
+    <p> Posted by: <%= post.creator.uname %></p>
+    
+    
+    <form method="post" action="/posts/vote/<%= post.id %>/">
+      <button type="submit" name="vote" value="1">Upvote</button>
+      <button type="submit" name="vote" value="-1">Downvote</button>
+      <button type="submit" name="vote" value="0">Clear Vote</button>
+    </form>
+   
+    <form action="/comment/comment-create/<%=post.id %>" method="get">
+    <button  type="submit"> comment</button>
+    </form>
+    <h4> Comments </h4>
+    
+    <div class="comment"> 
+        <ul>
+          <% comments.forEach(function(comment){ %>
+            <li>
+              <p><%= comment.description %></p>
+              <p>Posted by: <%= comment.creator.uname %> on <%= comment.timestamp %></p>
+              <a href="/comment/show/<%= comment.id %>">Show comment</a>
+              <% if(comment.delete){ %>
+                <form action="/posts/<%= post.id %>/comments/<%= comment.id %>/delete" method="POST">
+                  <button type="submit">Delete Comment</button>
+                </form>
+              <% } %>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+      
+
+    <button><a href="/">Back to Home</a></button>
+
+</body>
+<script>
+  const upbottom = document.querySelector('button[value="1"]');
+  const downbottom = document.querySelector('button[value="-1"]');
+  const clearbottom = document.querySelector('button[value="0"]');
+
+  const votedPost = votedPosts.find((votedPost) => votedPost.post_id == post_id);
+if (votedPost) {
+  if (votedPost.vote == 1) {
+    upvoteButton.classList.add('active');
+  } else if (votedPost.vote == -1) {
+    downvoteButton.classList.add('active');
+  }
+} else { 
+  upvoteButton.classList.remove('active');
+  downvoteButton.classList.remove('active');
+}
+</script>
+
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details </title>
+</head>
+<style>
+    .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: #ff4500;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+  .header a {
+    color: #ff4500;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .header button {
+    background-color: #ff4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  hr {
+    margin: 0;
+    border: 1px solid #ff4500;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .PostCreation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #ff4400;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .PostCreation a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+    h2{
+        font-size: 30px;
+        color: #ff4400;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    h3{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    h4{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    p{
+        font-size: 18px;
+        color: #272727;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    label{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    input{
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 5px;
+        font-family: "Open Sans", sans-serif;
+    }
+    button{
+    background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 10px;
+    
+     }
+     button a{
+         text-decoration: none;
+         color: white;
+     }
+    h4 a{
+    text-decoration: none;
+    }
+    button[type=logout]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+
+    button[value="1"]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+    button[value="-1"]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+    button[value="0"]{
+        background-color: #ff4500;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+     margin-left: 0;
+        font-size: 10px;
+    }
+    button[value="1"]:focus,
+button[value="-1"]:focus,
+button[value="0"]:focus {
+  background-color: #dd977d;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 0;
+  font-size: 10px;
+}
+</style>
+<body>
+  <div class="header">
+    <a href="/">
+      <h1>Jeditt</h1>
+    </a>
+    <div class="header-right">
+      <a href="/subs/list">Sub List</a>
+      <form method="post" action="/logout">
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+    <hr>
+  </div>  
+
+  <div class="PostCreation">
+   <a href="/posts/create" id="createPost">Create a post</a>
+   </div>
+
+    <h2>Post Details</h2>
+    <h3> <%=post.title%></h3>
+    <h4><%= post.subgroup %></h4>
+
+    <a href="<%= post.link %>"><%= post.link %></a>
+    <p> <%=post.description%></p>
+    <p> Posted by: <%= post.creator.uname %></p>
+    
+    
+    <form method="post" action="/posts/vote/<%= post.id %>/">
+      <button type="submit" name="vote" value="1">Upvote</button>
+      <button type="submit" name="vote" value="-1">Downvote</button>
+      <button type="submit" name="vote" value="0">Clear Vote</button>
+    </form>
+   
+    <form action="/comment/comment-create/<%=post.id %>" method="get">
+    <button  type="submit"> comment</button>
+    </form>
+    <h4> Comments </h4>
+    
+    <div class="comment"> 
+        <ul>
+          <% comments.forEach(function(comment){ %>
+            <li>
+              <p><%= comment.description %></p>
+              <p>Posted by: <%= comment.creator.uname %> on <%= comment.timestamp %></p>
+              <a href="/comment/show/<%= comment.id %>">Show comment</a>
+              <% if(comment.delete){ %>
+                <form action="/posts/<%= post.id %>/comments/<%= comment.id %>/delete" method="POST">
+                  <button type="submit">Delete Comment</button>
+                </form>
+              <% } %>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+      
+
+    <button><a href="/">Back to Home</a></button>
+
+</body>
+<script>
+  const upbottom = document.querySelector('button[value="1"]');
+  const downbottom = document.querySelector('button[value="-1"]');
+  const clearbottom = document.querySelector('button[value="0"]');
+
+  const votedPost = votedPosts.find((votedPost) => votedPost.post_id == post_id);
+if (votedPost) {
+  if (votedPost.vote == 1) {
+    upvoteButton.classList.add('active');
+  } else if (votedPost.vote == -1) {
+    downvoteButton.classList.add('active');
+  }
+} else { 
+  upvoteButton.classList.remove('active');
+  downvoteButton.classList.remove('active');
+}
+</script>
+
+>>>>>>> 69883fec1c4b1ec0796f0f2c16020019a8e480f4
+</html>

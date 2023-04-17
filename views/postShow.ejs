@@ -1,0 +1,127 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub</title>
+</head>
+<body>
+    <div class="header">
+        <a href="/">
+          <h1>Jeditt</h1>
+        </a>
+        <div>
+          <a href="/subs/list">Sub List</a>
+          <form method="post" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+        <hr>
+      </div>
+<h2> <%= post.title%> </h2>
+<p> <%= post.description %> </p>
+<p> <%= post.creator/p>
+<p> Link of the post: <a href="<%= post.link%>"><%=post.link %></a></p>
+<p> Author: <%=post.creator %></p>
+<p.><%= new Date(post.timestamp).toLocaleDateString() %></p>
+
+<% if (user){ %>
+    <form action="/comment/adding<%= post._id %>" method="POST">
+     <label for="comment">Comment:</label><br>
+     <textarea id="comment" name="comment"></textarea><br>
+     <input type="submit" value="Submit">
+    </form>
+    <% } %>
+    
+    <h3> Comments</h3>
+    
+    <% if (post.comments.length > 0){ %>
+        <ul>
+    <% post.comments.forEach(comment => { %>
+    <li> <p> <%= comment.comment %> </p>
+        <p> <%= comment.creator %> </p>
+        <p> <%= new Date(comment.timestamp).toLocaleDateString() %> </p>
+
+     <% if(user === comment.creator){ %>
+        <form action="/comment/delete/<%= comment._id %>" method="POST">
+        <input type="submit" value="Delete">
+        </form>
+        <% } %>
+
+    </li>   
+    <% }) %>
+     </ul>
+     <% }else{ %>
+        <p> No comments yet</p>
+    <% } %>
+
+</body>
+</html>
+
+
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub</title>
+</head>
+<body>
+    <div class="header">
+        <a href="/">
+          <h1>Jeditt</h1>
+        </a>
+        <div>
+          <a href="/subs/list">Sub List</a>
+          <form method="post" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+        <hr>
+      </div>
+<h2> <%= post.title%> </h2>
+<p> <%= post.description %> </p>
+<p> <%= post.creator/p>
+<p> Link of the post: <a href="<%= post.link%>"><%=post.link %></a></p>
+<p> Author: <%=post.creator %></p>
+<p.><%= new Date(post.timestamp).toLocaleDateString() %></p>
+
+<% if (user){ %>
+    <form action="/comment/adding<%= post._id %>" method="POST">
+     <label for="comment">Comment:</label><br>
+     <textarea id="comment" name="comment"></textarea><br>
+     <input type="submit" value="Submit">
+    </form>
+    <% } %>
+    
+    <h3> Comments</h3>
+    
+    <% if (post.comments.length > 0){ %>
+        <ul>
+    <% post.comments.forEach(comment => { %>
+    <li> <p> <%= comment.comment %> </p>
+        <p> <%= comment.creator %> </p>
+        <p> <%= new Date(comment.timestamp).toLocaleDateString() %> </p>
+
+     <% if(user === comment.creator){ %>
+        <form action="/comment/delete/<%= comment._id %>" method="POST">
+        <input type="submit" value="Delete">
+        </form>
+        <% } %>
+
+    </li>   
+    <% }) %>
+     </ul>
+     <% }else{ %>
+        <p> No comments yet</p>
+    <% } %>
+
+</body>
+</html>
+
+
+>>>>>>> 69883fec1c4b1ec0796f0f2c16020019a8e480f4
