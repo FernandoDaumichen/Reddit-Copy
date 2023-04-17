@@ -14,7 +14,7 @@ This is a simple Reddit clone built using CSS, EJS, and Express. The purpose of 
 1. Clone the repository to your local machine.
 2. Install the required dependencies by running `npm install`.
 3. Run the server using `npm start`.
-4. Navigate to `http://localhost:3000` in your web browser to view the site.
+4. Navigate to `http://localhost:8000` in your web browser to view the site.
 
 ## Usage
 
