@@ -1,355 +1,70 @@
-<<<<<<< HEAD
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Main Dashboard</title>
-</head>
-<style>
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  color: #ff4500;
-  padding: 10px;
-  font-size: 20px;
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Dashboard</title>
+    <link rel="stylesheet" href="/css/global.css">
 
-}
-
-  .header a {
-    color: #ff4500;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-
-  .header h1 {
-    margin: 0;
-    font-size: 30px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  .header button {
-    background-color: #ff4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  hr {
-    margin: 0;
-    border: 1px solid #ff4500;
-  }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-
-  .PostCreation {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #ff4400;
-    color: #ffffff;
-    padding: 10px;
-    font-size: 20px;
-  }
-
-  .PostCreation a {
-    color: #ffffff;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-
-  h2 {
-    font-size: 30px;
-    color: #ff4400;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-  h3{
-    font-size: 20px;
-    color: #ff4400;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  p {
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  a {
-    font-size: 20px;
-    color: #0f23fe;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-
-  button[type="submit"]{
-    background-color: #ff4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 10px;
-    margin-left: 10px;
-    margin-top: 20px;
-  } 
-  button[type="delete"]{
-    background-color: #ff4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 10px;
-    margin-left: 10px;
-    margin-top: 20px;
-  }
-</style>
+  </head>
 <body>
-  <div class="header">
-    <a href="/">
-      <h1>Jeditt</h1>
-    </a>
-    <div class="header-right">
-      <a href="/subs/list">Sub List</a>
-      <form method="post" action="/logout">
-        <button type="submit">Logout</button>
-      </form>
+    <div class="header">
+        <div class="logo">
+          <img src="/Reddit_Lockup_Logo.svg" alt="Logo">  
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Reddit...">
+        </div>
+        <div class="header-right">
+            <a href="#">Sign Up</a>
+            <button>Log In</button>
+        </div>
     </div>
-    <hr>
-  </div>  
 
-  <div class="PostCreation">
-   <a href="/posts/create" id="createPost">Create a post</a>
-   </div>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Topics</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Popular</a></li>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Movies</a></li>
+            </ul>
+        </div>
 
-   
-  <h2>Posts In the Community</h2>
-  <% if (posts.length > 0) { %>
-    <ul>
-      <% posts.forEach(post => { %>
-        <li>
-          <a href="/posts/show/<%= post.id %>"><h3><%= post.title %></h3></a>
-          <a href="<%= post.link %>"><%= post.link %></a>
-          <p><%= post.description %></p>
-          <p><%= post.creator.uname %></p>
-          <% if( post.creator==user.id){ %>
-     
-            <form method="get" action="/editPost/<%= post.id %>">
-              <button type="submit">Edit</button>
-              </form>
-
-              <form method="post" action="/deletePost/<%= post.id %>">
-              <button type="delete">Delete</button>
-            </form>
-
-          <%}%>
-
-        </li>
-      <% }) %>
-    </ul>
-  <% } else { %>
-    <p>You haven't created any posts yet.</p>
-  <% } %>
-
-  
-</body>
-<script>
-    const button = document.querySelector('button[type="delete"]');
-    button.addEventListener('click', () => {
-        alert('Are you sure you want to delete this post?');
-        if(confirm('Are you sure you want to delete this post ?')){
-            window.location.href = '/';
-        }});
-</script>
-</html>
-=======
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Main Dashboard</title>
-</head>
-<style>
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  color: #ff4500;
-  padding: 10px;
-  font-size: 20px;
-
-}
-
-  .header a {
-    color: #ff4500;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-
-  .header h1 {
-    margin: 0;
-    font-size: 30px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  .header button {
-    background-color: #ff4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  hr {
-    margin: 0;
-    border: 1px solid #ff4500;
-  }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-
-  .PostCreation {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #ff4400;
-    color: #ffffff;
-    padding: 10px;
-    font-size: 20px;
-  }
-
-  .PostCreation a {
-    color: #ffffff;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-
-  h2 {
-    font-size: 30px;
-    color: #ff4400;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-  h3{
-    font-size: 20px;
-    color: #ff4400;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  p {
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  a {
-    font-size: 20px;
-    color: #0f23fe;
-    margin-bottom: 5px;
-    font-family: "Open Sans", sans-serif;
-  }
-
-
-  button[type="submit"]{
-    background-color: #ff4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 10px;
-    margin-left: 10px;
-    margin-top: 20px;
-  } 
-  button[type="delete"]{
-    background-color: #ff4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 10px;
-    margin-left: 10px;
-    margin-top: 20px;
-  }
-</style>
-<body>
-  <div class="header">
-    <a href="/">
-      <h1>Jeditt</h1>
-    </a>
-    <div class="header-right">
-      <a href="/subs/list">Sub List</a>
-      <form method="post" action="/logout">
-        <button type="submit">Logout</button>
-      </form>
+        <div class="content">
+            <h2>Posts in the Community</h2>
+            <% if (posts.length > 0) { %>
+                <ul>
+                    <% posts.forEach(post => { %>
+                        <li>
+                            <a href="/posts/show/<%= post.id %>">
+                                <h3><%= post.title %></h3>
+                            </a>
+                            <a href="<%= post.link %>"><%= post.link %></a>
+                            <p><%= post.description %></p>
+                            <p>Posted by: <%= post.creator.uname %></p>
+                            <% if (post.creator == user.id) { %>
+                                <form method="get" action="/editPost/<%= post.id %>">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <form method="post" action="/deletePost/<%= post.id %>">
+                                    <button type="delete">Delete</button>
+                                </form>
+                            <% } %>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No posts have been created yet.</p>
+            <% } %>
+        </div>
     </div>
-    <hr>
-  </div>  
 
-  <div class="PostCreation">
-   <a href="/posts/create" id="createPost">Create a post</a>
-   </div>
-
-   
-  <h2>Posts In the Community</h2>
-  <% if (posts.length > 0) { %>
-    <ul>
-      <% posts.forEach(post => { %>
-        <li>
-          <a href="/posts/show/<%= post.id %>"><h3><%= post.title %></h3></a>
-          <a href="<%= post.link %>"><%= post.link %></a>
-          <p><%= post.description %></p>
-          <p><%= post.creator.uname %></p>
-          <% if( post.creator==user.id){ %>
-     
-            <form method="get" action="/editPost/<%= post.id %>">
-              <button type="submit">Edit</button>
-              </form>
-
-              <form method="post" action="/deletePost/<%= post.id %>">
-              <button type="delete">Delete</button>
-            </form>
-
-          <%}%>
-
-        </li>
-      <% }) %>
-    </ul>
-  <% } else { %>
-    <p>You haven't created any posts yet.</p>
-  <% } %>
-
-  
+    <div class="footer">
+        <a href="/">Back to Home</a>
+    </div>
 </body>
-<script>
-    const button = document.querySelector('button[type="delete"]');
-    button.addEventListener('click', () => {
-        alert('Are you sure you want to delete this post?');
-        if(confirm('Are you sure you want to delete this post ?')){
-            window.location.href = '/';
-        }});
-</script>
 </html>
->>>>>>> 69883fec1c4b1ec0796f0f2c16020019a8e480f4
