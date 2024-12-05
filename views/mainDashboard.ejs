@@ -6,22 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Dashboard</title>
     <link rel="stylesheet" href="/css/global.css">
-
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
 <body>
     <div class="header">
         <div class="logo">
-          <img src="/Reddit_Lockup_Logo.svg" alt="Logo">  
+            <img src="/Reddit_Lockup_Logo.svg" alt="Logo">
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search Reddit...">
+            <form action="/search" method="get">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" name="query" placeholder="Search Reddit..." />
+                </div>
+            </form>
         </div>
+        
         <div class="header-right">
-            <a href="#">Sign Up</a>
-            <button>Log In</button>
+            <!-- Sign Up Link -->
+            <a href="#" class="sign-up-button">Sign Up</a>
+            
+            <!-- Logout Form -->
+            <form method="post" action="/logout">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
         </div>
     </div>
-
+    
     <div class="container">
         <div class="sidebar">
             <h3>Topics</h3>
@@ -37,26 +48,60 @@
         <div class="content">
             <h2>Posts in the Community</h2>
             <% if (posts.length > 0) { %>
-                <ul>
+                <div class="post-list">
                     <% posts.forEach(post => { %>
-                        <li>
-                            <a href="/posts/show/<%= post.id %>">
-                                <h3><%= post.title %></h3>
-                            </a>
-                            <a href="<%= post.link %>"><%= post.link %></a>
-                            <p><%= post.description %></p>
-                            <p>Posted by: <%= post.creator.uname %></p>
-                            <% if (post.creator == user.id) { %>
-                                <form method="get" action="/editPost/<%= post.id %>">
-                                    <button type="submit">Edit</button>
-                                </form>
-                                <form method="post" action="/deletePost/<%= post.id %>">
-                                    <button type="delete">Delete</button>
-                                </form>
-                            <% } %>
-                        </li>
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-title">
+                                    <h3><%= post.title %></h3>
+                                </div>
+                                <div class="post-meta">
+                                    <p class="creator">Posted by: <%= post.creator.uname %></p>
+                                    <p class="timestamp"><%= new Date(post.timestamp).toLocaleString() %></p>
+                                </div>
+                            </div>
+
+                            <div class="post-body">
+                                <p><%= post.description || 'No description available' %></p>
+
+                                <% if (post.linkPreview && post.linkPreview.previewText) { %>
+                                    <div class="link-preview">
+                                        <p><%= post.linkPreview.previewText %></p>
+                                        <a href="<%= post.link %>" target="_blank"><%= post.link %></a>
+                                    </div>
+                                <% } %>
+                            </div>
+
+                            <div class="post-footer">
+                                <div class="post-votes">
+                                    <!-- Upvote Button -->
+                                    <button class="vote-button upvote">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    
+                                    <!-- Vote Count -->
+                                    <span class="vote-count"><%= post.votes ? post.votes.length : 0 %></span>
+                                    
+                                    <!-- Downvote Button -->
+                                    <button class="vote-button downvote">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <% if (post.creator.id == user.id) { %>
+                                        <form method="get" action="/editPost/<%= post.id %>">
+                                            <button type="submit" class="edit-btn">Edit</button>
+                                        </form>
+                                        <form method="post" action="/deletePost/<%= post.id %>">
+                                            <button type="submit" class="delete-btn">Delete</button>
+                                        </form>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
                     <% }) %>
-                </ul>
+                </div>
             <% } else { %>
                 <p>No posts have been created yet.</p>
             <% } %>

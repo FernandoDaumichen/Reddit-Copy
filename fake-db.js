@@ -40,6 +40,53 @@ const posts = {
     subgroup: 'documentaries',
     timestamp: 1642611742010,
   },
+  103: {
+    id: 103,
+    title: "The Best of Bach",
+    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
+    description: "I love classical music",
+    creator: 3,
+    subgroup: 'music',
+    timestamp: 1642691742010,
+  },
+  104: {
+    id: 104,
+    title: "The Best of Bach",
+    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
+    description: "I love classical music",
+    creator: 3,
+    subgroup: 'music',
+    timestamp: 1642691742010,
+  },
+  105: {
+    id: 105,
+    title: "The Best of Bach",
+    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
+    description: "I love classical music",
+    creator: 3,
+    subgroup: 'music',
+    timestamp: 1642691742010,
+  },
+  106: {
+    id: 106,
+    title: "The Best of Bach",
+    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
+    description: "I love classical music",
+    creator: 3,
+    subgroup: 'music',
+    timestamp: 1642691742010,
+  },
+  107: {
+    id: 107,
+    title: "The Best of Bach",
+    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
+    description: "I love classical music",
+    creator: 3,
+    subgroup: 'music',
+    timestamp: 1642691742010,
+  },
+
+
 };
 
 const comments = {
@@ -81,14 +128,40 @@ function getVotesForPost(post_id) {
 }
 
 function decoratePost(post) {
+  // Get votes for the post, default to an empty array if no votes are found
+  const votes = getVotesForPost(post.id) || [];
+
+  // Add basic preview for the link
+  const linkPreview = {
+    url: post.link,
+    previewText: getPreviewText(post.link), // This fetches a basic preview text
+  };
+
+  // Ensure linkPreview is always available
   post = {
     ...post,
     creator: users[post.creator],
-    votes: getVotesForPost(post.id),
+    votes: votes,  // Assigning the fetched votes (guaranteed to be an array)
     comments: Object.values(comments).filter(comment => comment.post_id === post.id).map(comment => ({ ...comment, creator: users[comment.creator] })),
-  }
+    linkPreview: linkPreview,  // Always include the linkPreview object
+  };
+
   return post;
 }
+
+
+function getPreviewText(url) {
+  // A simple placeholder function to display the URL or add a preview text
+  // You can replace this with actual logic to fetch metadata from the link
+  if (url.includes('youtube.com')) {
+    return "Watch the video on YouTube";
+  }
+  if (url.includes('smithsonianmag.com')) {
+    return "Explore the surprising success story of fish sticks.";
+  }
+  return "Click to view the post";
+}
+
 
 /**
  * @param {*} n how many posts to get, defaults to 5

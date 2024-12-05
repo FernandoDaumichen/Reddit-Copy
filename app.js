@@ -47,17 +47,15 @@ app.use("/subs", requireLogin, subs);
 
 app.get("/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect("/login");
+    res.redirect("/login");
+  } else {
+    const posts = db.getPosts();
+    const decoratedPosts = posts.map(post => db.decoratePost(post));  // Ensure posts are decorated
+    res.render("mainDashboard", {
+      user: req.session.user,
+      posts: decoratedPosts,  // Pass decorated posts with votes
+    });
   }
-  const posts = db.getPosts();
-  const decoratedPosts = posts.map((post) => ({
-    ...post,
-    creator: db.getUser(post.creator),
-  }));
-  res.render("mainDashboard", {
-    user: req.session.user,
-    posts: decoratedPosts,
-  });
 });
 
 app.get("/login", (req, res) => {
