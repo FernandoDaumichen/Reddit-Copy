@@ -47,40 +47,45 @@ app.use("/subs", requireLogin, subs);
 
 app.get("/", (req, res) => {
   if (!req.session.user) {
-    res.redirect("/login");
-  } else {
-    const posts = db.getPosts();
-    const decoratedPosts = posts.map(post => db.decoratePost(post));  // Ensure posts are decorated
-    res.render("mainDashboard", {
-      user: req.session.user,
-      posts: decoratedPosts,  // Pass decorated posts with votes
-    });
+    return res.redirect("/login");
   }
+  const posts = db.getPosts();
+  const decoratedPosts = posts.map((post) => db.decoratePost(post));
+
+  // Get unique subgroups
+  const sub = [...new Set(posts.map((post) => post.subgroup.toLowerCase()))]
+    .map((topic) => topic.charAt(0).toUpperCase() + topic.slice(1))
+    .sort();
+
+  res.render("mainDashboard", {
+    user: req.session.user,
+    posts: decoratedPosts,
+    users: db.users,
+    sub,
+  });
 });
 
 app.get("/login", (req, res) => {
-  res.render("login", {});
+  res.render("login");
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", express.urlencoded({ extended: false }), (req, res) => {
   const { username, password } = req.body;
   const user = db.getUserByUsername(username);
 
-  if (!user) {
-    console.log(`Login attempt failed for user: ${username}`);
+  if (!user || user.password !== password) {
+    console.log(`Login attempt from user ${username} failed`);
     return res.redirect("/login");
   }
 
-  if (user.password === password) {
-    req.session.user = user;
-    return res.redirect("/");
-  }
-
-  res.redirect("/login");
+  req.session.user = user; // Store the entire user object in session
+  req.session.username = username; // Store the username explicitly if needed
+  res.redirect("/");
 });
 
+
 app.get("/signup", (req, res) => {
-  res.render("signUp", {});
+  res.render("signUp");
 });
 
 app.post("/signup", (req, res) => {
@@ -99,7 +104,6 @@ app.use((req, res) => {
   res.status(404).render("404", { message: "Page not found" });
 });
 
-// Start server
 const port = 8080;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

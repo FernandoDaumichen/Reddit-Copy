@@ -199,24 +199,35 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
 .post-votes {
     display: flex;
-    align-items: center;    
+    align-items: center;
+    justify-content: center; /* Center-align content */
     background-color: #e5ebee;
+    border-radius: 999px; /* Fully round on both ends */
+    padding: 2px 8px; /* Minimal padding */
+    font-size: 12px; /* Smaller font size */
+    height: 30px; /* Reduced height */
+    width: 70px; /* Smaller fixed width */
+    overflow: hidden; /* Ensures content doesn't overflow */
 }
 
+
+
 .vote-button {
-    background: transparent;
+    background-color: #e5ebee;
     border: none;
     cursor: pointer;
     font-size: 20px;
     color: #888;
 }
 
-.vote-button:hover {
-    color: #ff4500;
+.vote-button i {
+    font-size: 14px; /* Smaller icon size */
+    width: 14px; /* Consistent width */
+    height: 14px; /* Consistent height */
 }
+
 
 .vote-count {
     font-size: 16px;
@@ -225,7 +236,6 @@ body {
 
 .post-actions button {
     padding: 5px 10px;
-    background-color: #ff4500;
     border: none;
     color: white;
     border-radius: 5px;
@@ -233,9 +243,7 @@ body {
     font-size: 14px;
 }
 
-.post-actions button:hover {
-    background-color: #e03f00;
-}
+
 
 
 .edit-btn:hover, .delete-btn:hover {
@@ -258,19 +266,14 @@ body {
 }
 
 button {
-    background-color: #ff4500;
     color: white;
-    padding: 10px 15px; 
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    margin-right: 10px;
     font-size: 14px;
+    padding: 10px;
 }
 
-button:hover {
-    background-color: #e03f00;
-}
 
 ul {
     list-style: none;

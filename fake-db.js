@@ -1,17 +1,17 @@
 const users = {
   1: {
     id: 1,
-    uname: 'alice',
+    uname: 'Alice',
     password: 'alpha',
   },
   2: {
     id: 2,
-    uname: 'bob',
+    uname: 'Bob5weet',
     password: 'bravo',
   },
   3: {
     id: 3,
-    uname: 'carol',
+    uname: 'CarolNine9',
     password: 'charlie',
   },
   4: {
@@ -26,67 +26,128 @@ const posts = {
     id: 101,
     title: "Fishsticks",
     link: "https://www.smithsonianmag.com/innovation/surprising-success-story-fish-sticks-180977578/",
-    description: "I actually really do not like fish sticks",
+    description: "I actually really do not like fish sticks.",
     creator: 1,
-    subgroup: 'food',
+    subgroup: "Food",
     timestamp: 1643648446955,
   },
   102: {
     id: 102,
-    title: "Charlie the Unicorn",
-    link: "https://www.youtube.com/watch?v=CsGYh8AacgY",
-    description: "",
-    creator: 2,
-    subgroup: 'documentaries',
-    timestamp: 1642611742010,
+    title: "Homemade Pizza Tips",
+    link: "https://www.pizzamaking.com/",
+    description: "Master the art of making pizza at home.",
+    creator: 1,
+    subgroup: "Food",
+    timestamp: 1643655446955,
   },
   103: {
     id: 103,
-    title: "The Best of Bach",
-    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
-    description: "I love classical music",
-    creator: 3,
-    subgroup: 'music',
-    timestamp: 1642691742010,
+    title: "Charlie the Unicorn",
+    link: "https://www.youtube.com/watch?v=CsGYh8AacgY",
+    description: "A classic and absurd internet gem!",
+    creator: 2,
+    subgroup: "Entertainment",
+    timestamp: 1642611742010,
   },
   104: {
     id: 104,
-    title: "The Best of Bach",
-    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
-    description: "I love classical music",
-    creator: 3,
-    subgroup: 'music',
-    timestamp: 1642691742010,
+    title: "Understanding Quantum Computing",
+    link: "https://www.ibm.com/quantum-computing/",
+    description: "Learn the basics of quantum computing.",
+    creator: 2,
+    subgroup: "Technology",
+    timestamp: 1642618742010,
   },
   105: {
     id: 105,
     title: "The Best of Bach",
     link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
-    description: "I love classical music",
+    description: "I love classical music; it helps me focus.",
     creator: 3,
-    subgroup: 'music',
+    subgroup: "Music",
     timestamp: 1642691742010,
   },
   106: {
     id: 106,
-    title: "The Best of Bach",
-    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
-    description: "I love classical music",
+    title: "Mozart's Greatest Hits",
+    link: "https://www.youtube.com/watch?v=tdOCrgGRNBM",
+    description: "My go-to playlist for relaxation.",
     creator: 3,
-    subgroup: 'music',
-    timestamp: 1642691742010,
+    subgroup: "Music",
+    timestamp: 1642781742010,
   },
   107: {
     id: 107,
-    title: "The Best of Bach",
-    link: "https://www.youtube.com/watch?v=6JQm5aSjX6g",
-    description: "I love classical music",
-    creator: 3,
-    subgroup: 'music',
-    timestamp: 1642691742010,
+    title: "Top 10 JavaScript Frameworks",
+    link: "https://www.freecodecamp.org/news/10-best-javascript-frameworks/",
+    description: "Choosing the right framework for your next project.",
+    creator: 4,
+    subgroup: "Programming",
+    timestamp: 1642871742010,
   },
-
-
+  108: {
+    id: 108,
+    title: "React vs. Angular",
+    link: "https://blog.logrocket.com/react-vs-angular/",
+    description: "A detailed comparison for modern web developers.",
+    creator: 4,
+    subgroup: "Programming",
+    timestamp: 1642961742010,
+  },
+  109: {
+    id: 109,
+    title: "Best Sci-Fi Movies of 2024",
+    link: "https://www.imdb.com/list/ls023456789/",
+    description: "A roundup of the must-watch sci-fi films this year.",
+    creator: 1,
+    subgroup: "Movies",
+    timestamp: 1643051742010,
+  },
+  110: {
+    id: 110,
+    title: "Why Cats Rule the Internet",
+    link: "https://www.history.com/why-cats-rule-the-internet",
+    description: "A deep dive into humanity's obsession with cats.",
+    creator: 5,
+    subgroup: "Pets",
+    timestamp: 1643141742010,
+  },
+  111: {
+    id: 111,
+    title: "Exploring the Rockies",
+    link: "https://www.rockies.com/",
+    description: "Top trails and tips for your next adventure.",
+    creator: 5,
+    subgroup: "Outdoors",
+    timestamp: 1643231742010,
+  },
+  112: {
+    id: 112,
+    title: "The History of Jazz",
+    link: "https://www.jazzhistoryonline.com/",
+    description: "Tracing the roots of one of the greatest music genres.",
+    creator: 3,
+    subgroup: "Music",
+    timestamp: 1643501742010,
+  },
+  113: {
+    id: 113,
+    title: "The Future of AI",
+    link: "https://www.ted.com/talks/future-of-ai",
+    description: "Exploring the possibilities and ethical implications of AI.",
+    creator: 2,
+    subgroup: "Technology",
+    timestamp: 1643681742010,
+  },
+  114: {
+    id: 114,
+    title: "Beginner's Guide to Yoga",
+    link: "https://www.yogajournal.com/",
+    description: "Simple tips to start your yoga journey today.",
+    creator: 6,
+    subgroup: "Health & Wellness",
+    timestamp: 1643591742010,
+  },
 };
 
 const comments = {
@@ -115,6 +176,8 @@ function debug() {
   console.log("==== DB DEBUGING ====")
 }
 
+
+
 function getUser(id) {
   return users[id];
 }
@@ -128,27 +191,19 @@ function getVotesForPost(post_id) {
 }
 
 function decoratePost(post) {
-  // Get votes for the post, default to an empty array if no votes are found
-  const votes = getVotesForPost(post.id) || [];
+  const creator = users[post.creator]; // Fetch the creator by ID
 
-  // Add basic preview for the link
-  const linkPreview = {
-    url: post.link,
-    previewText: getPreviewText(post.link), // This fetches a basic preview text
-  };
-
-  // Ensure linkPreview is always available
-  post = {
+  return {
     ...post,
-    creator: users[post.creator],
-    votes: votes,  // Assigning the fetched votes (guaranteed to be an array)
-    comments: Object.values(comments).filter(comment => comment.post_id === post.id).map(comment => ({ ...comment, creator: users[comment.creator] })),
-    linkPreview: linkPreview,  // Always include the linkPreview object
+    creator: creator || { uname: "Unknown User", id: null }, // Include a fallback for creator
+    votes: getVotesForPost(post.id),
+    comments: getCommentsPost(post.id),
+    linkPreview: {
+      url: post.link,
+      previewText: getPreviewText(post.link),
+    },
   };
-
-  return post;
 }
-
 
 function getPreviewText(url) {
   // A simple placeholder function to display the URL or add a preview text
@@ -216,7 +271,8 @@ function deletePost(post_id) {
 }
 
 function getSubs() {
-  return Array.from(new Set(Object.values(posts).map(post => post.subgroup)))
+  const subs = Array.from(new Set(Object.values(posts).map(post => post.subgroup || ""))).filter(Boolean);
+  return subs;
 }
 
 function addComment(post_id, creator, description) {
