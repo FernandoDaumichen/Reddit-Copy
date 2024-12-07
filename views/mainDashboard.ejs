@@ -14,27 +14,38 @@
   <body>
     <div class="header">
       <div class="logo">
-        <img src="/Reddit_Lockup_Logo.svg" alt="Logo" />
+        <a href="/">
+          <img src="/Reddit_Lockup_Logo.svg" alt="Logo" />
+        </a>
       </div>
+    
       <div class="search-bar">
         <form action="/search" method="get">
+          <label for="search-query" class="sr-only">Search Reddit</label>
           <div class="search-wrapper">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" name="query" placeholder="Search Reddit..." />
+            <input id="search-query" type="text" name="query" placeholder="Search Reddit..." />
           </div>
         </form>
       </div>
-
+    
       <div class="header-right">
-        <!-- Sign Up Link -->
-        <a href="#" class="sign-up-button">Sign Up</a>
-
-        <!-- Logout Form -->
-        <form method="post" action="/logout">
-          <button type="submit" class="logout-button">Logout</button>
-        </form>
+        <% if (user) { %>
+          <!-- Display "Post" button for logged-in users -->
+          <a href="/posts/create" class="post-button">Post</a>
+          
+          <!-- Logout Button with Icon -->
+          <form method="post" action="/logout" class="logout-form">
+            <button type="submit" class="logout-button" aria-label="Logout">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </form>
+        <% } else { %>
+          <!-- Remove Sign-Up Button -->
+        <% } %>
       </div>
     </div>
+    
 
     <div class="container">
       <div class="sidebar">
@@ -96,13 +107,18 @@
               <div class="post-actions">
                 <% if (post.creator.id == user.id) { %>
                 <form method="get" action="/editPost/<%= post.id %>">
-                  <button type="submit" class="edit-btn">Edit</button>
+                  <button type="submit" class="edit-btn">
+                    <i class="fas fa-edit"></i> Edit
+                  </button>
                 </form>
                 <form method="post" action="/deletePost/<%= post.id %>">
-                  <button type="submit" class="delete-btn">Delete</button>
+                  <button type="submit" class="delete-btn">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </button>
                 </form>
                 <% } %>
               </div>
+              
             </div>
           </div>
           <% }) %>

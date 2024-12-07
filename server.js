@@ -91,30 +91,49 @@ app.get("/subs/list", (req, res) => {
     subname: subname,
   });
 });
+app.get("/posts/show/:postid", (req, res) => {
+  const post_id = parseInt(req.params.postid, 10);
+  const post = db.getPost(post_id);
+  const user = req.session.user;
+  const comments = db.getCommentsPost(post_id);
+
+  // Fetch subgroups (topics) for the sidebar
+  const sub = db.getSubs();
+
+  if (!post) {
+    return res.status(404).render("404", { message: "Post not found" });
+  }
+
+  res.render("postDetailed", {
+    post,
+    user,
+    comments,
+    sub, // Pass `sub` here
+  });
+});
+
 
 
 app.get("/posts/show/:postid", (req, res) => {
-  const post_id = req.params.postid;
+  const post_id = parseInt(req.params.postid, 10);
   const post = db.getPost(post_id);
-  const username = req.session.username;
-  const user = db.getUserByUsername(username);
+
+  if (!post) {
+    return res.status(404).render("404", { message: "Post not found" });
+  }
+
+  const user = req.session.user || null;
   const comments = db.getCommentsPost(post_id);
-  const votedPosts = db.getVotesForPost(username);
+  const sub = db.getSubs(); // Fetch subgroups for the sidebar
 
-  console.log("****HEY****");
-  console.log(comments);
+  console.log("Subgroups:", sub); // Debugging output
+
   res.render("postDetailed", {
-    post: post,
-    user: user,
-    votedPost: votedPosts,
-    comments: comments, // update the variable name here to "comments"
+    post,
+    user,
+    comments,
+    sub, // Ensure sub is passed
   });
-});
-app.get("/subs/show/:sub", (req, res) => {
-  console.log("Route accessed: /subs/show/:sub");
-  console.log("Subgroup requested:", req.params.sub);
-
-  // Proceed with the rest of the logic
 });
 
 

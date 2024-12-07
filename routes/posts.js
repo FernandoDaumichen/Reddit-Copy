@@ -4,7 +4,10 @@ const db = require("../fake-db");
 const requireLogin = require("../server");
 
 router.get("/create", (req, res) => {
-  res.render("createPost");
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  res.render("createPost", { user: req.session.user }); // Pass user to the template
 });
 
 router.post("/create", (req, res) => {

@@ -6,64 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Details</title>
     <link rel="stylesheet" href="/css/global.css">
-
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
 </head>
 <body>
     <div class="header">
         <div class="logo">
-            <img src="/Reddit_Lockup_Logo.svg" alt="Logo">
-
+          <a href="/">
+            <img src="/Reddit_Lockup_Logo.svg" alt="Logo" />
+          </a>
         </div>
+  
+        <div class="search-bar">
+          <form action="/search" method="get">
+            <div class="search-wrapper">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" name="query" placeholder="Search Reddit..." />
+            </div>
+          </form>
+        </div>
+  
         <div class="header-right">
-            <a href="#">Sign Up</a>
-            <button>Log In</button>
+          <a href="#" class="sign-up-button">Sign Up</a>
+          <form method="post" action="/logout">
+            <button type="submit" class="logout-button">Logout</button>
+          </form>
         </div>
     </div>
 
     <div class="container">
         <div class="sidebar">
             <h3>Topics</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Popular</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Movies</a></li>
-            </ul>
+       
         </div>
-
+        
         <div class="content">
             <div class="post-details">
                 <h2>Post Details</h2>
-                <h3>Post Title Here</h3>
-                <h4>Subgroup Name</h4>
-                <a href="#">Post Link</a>
-                <p>Post description goes here...</p>
-                <p>Posted by: Username</p>
+                <h3><%= post.title %></h3>
+                <h4><%= post.subgroup %></h4>
+                <a href="<%= post.link %>" target="_blank">Visit Link</a>
+                <p><%= post.description %></p>
+                <p>Posted by: <%= post.creator.uname %></p>
 
-                <form method="post" action="#">
-                    <button type="submit" name="vote" value="1">Upvote</button>
-                    <button type="submit" name="vote" value="-1">Downvote</button>
-                    <button type="submit" name="vote" value="0">Clear Vote</button>
-                </form>
-                <form method="get" action="#">
-                    <button type="submit">Comment</button>
-                </form>
+                <div class="post-footer">
+                    <div class="post-votes">
+                        <button class="vote-button upvote">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <span class="vote-count"><%= post.votes.length %></span>
+                        <button class="vote-button downvote">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                    </div>
+
+                    <div class="post-actions">
+                        <% if (post.creator.id == user.id) { %>
+                        <form method="get" action="/editPost/<%= post.id %>">
+                          <button type="submit" class="edit-btn">
+                            <i class="fas fa-edit"></i> Edit
+                          </button>
+                        </form>
+                        <form method="post" action="/deletePost/<%= post.id %>">
+                          <button type="submit" class="delete-btn">
+                            <i class="fas fa-trash-alt"></i> Delete
+                          </button>
+                        </form>
+                        <% } %>
+                      </div>
+                      
+
+                </div>
             </div>
 
             <div class="comment-section">
                 <h4>Comments</h4>
                 <ul>
+                    <% comments.forEach(comment => { %>
                     <li>
-                        <p>Comment 1 description...</p>
-                        <p>Posted by: User1 on 2024-12-03</p>
-                        <a href="#">Show Comment</a>
+                        <p><%= comment.description %></p>
+                        <p>Posted by: <%= comment.creator.uname %> on <%= new Date(comment.timestamp).toLocaleString() %></p>
                     </li>
-                    <li>
-                        <p>Comment 2 description...</p>
-                        <p>Posted by: User2 on 2024-12-03</p>
-                        <a href="#">Show Comment</a>
-                    </li>
+                    <% }) %>
                 </ul>
             </div>
         </div>
